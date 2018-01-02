@@ -1,3 +1,13 @@
-<h2 id="title">Welcome to Ember</h2>
+<h1>Ember CSS Properties</h1>
 
-{{outlet}}
+<div class="box" style="{{css-properties myStyles}}"></div>
+
+<div data-test-malicious style="{{css-properties width=maliciousValue}}">
+  Foobar
+</div>
+
+<div class="box" style="{{css-properties background-color='red'}}">
+  background-color='red'
+</div>
+
+<div class="box" style="{{css-properties background-color='green' color='white'}}"></div>
