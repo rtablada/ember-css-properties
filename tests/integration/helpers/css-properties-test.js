@@ -68,3 +68,17 @@ test('it should ignore empty values', function(assert) {
   assert.notOk(el.style.width);
   assert.notOk(el.style.backgroundImage);
 });
+
+test('it should accept non-string values', function(assert) {
+  let myStyles = {
+    'line-height': 1.5
+  };
+
+  this.set('myStyles', myStyles);
+
+  this.render(hbs`<div data-test-mystyle style="{{css-properties myStyles}}"></div>`);
+
+  let el = this.$('[data-test-mystyle]')[0];
+
+  assert.equal(el.style.lineHeight, '1.5');
+});
