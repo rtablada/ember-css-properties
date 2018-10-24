@@ -12,7 +12,7 @@ export function cssProperties([objStyles = {}], hashStyles = {}) {
 
     if (isEmpty(propertyValue)) continue;
 
-    const [singlePropertyValue] = propertyValue.split(';');
+    const [singlePropertyValue] = String(propertyValue).split(';');
 
     stringStyles += `${cssesc(propertyName)}:${cssesc(singlePropertyValue)};`;
   }
