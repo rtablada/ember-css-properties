@@ -30,7 +30,7 @@ test('it should escape malicious property values', function(assert) {
   assert.notEqual(el2.css('width'), '10px', 'Malicious values are not made into valid values');
 });
 
-test('it should allow object invokation', function(assert) {
+test('it should allow object invocation', function(assert) {
   let myStyles = {
     color: 'red',
     width: '20%',
@@ -48,4 +48,23 @@ test('it should allow object invokation', function(assert) {
 
   /*eslint no-useless-escape: 0*/
   assert.equal(el.style.backgroundImage, `url(\"http://placecage.com/200/200\")`);
+});
+
+test('it should ignore empty values', function(assert) {
+  let myStyles = {
+    color: 'red',
+    width: undefined,
+    'background-image': null
+  };
+
+  this.set('myStyles', myStyles);
+
+  this.render(hbs`<div data-test-mystyle style="{{css-properties myStyles}}"></div>`);
+
+  let el = this.$('[data-test-mystyle]')[0];
+
+  assert.equal(el.style.color, 'red');
+
+  assert.notOk(el.style.width);
+  assert.notOk(el.style.backgroundImage);
 });
