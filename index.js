@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-css-properties',
+  name: require('./package').name,
 
   included(app) {
     this.app = app;
