@@ -34,7 +34,12 @@ test('it should escape malicious property values', function(assert) {
     '10px',
     'Passes first set value in potentially malicious values'
   );
-  assert.notEqual(el.style.color, 'red', 'Does not pass values after a ";"');
+
+  assert.equal(
+    el.outerHTML,
+    '<div data-test-malicious="" style="width:10px; color: red;&quot;><h2>Hello World</h2></div><div style=&quot;;"></div>',
+    'Generates safely escaped malicious content'
+  );
 
   this.set(
     'otherMaliciousValue',
