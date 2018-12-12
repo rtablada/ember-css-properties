@@ -1,7 +1,7 @@
 {
   "name": "ember-css-properties",
   "version": "0.1.4",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Easily and safely bind CSS properties using the `style` attribute.",
   "keywords": [
     "ember-addon"
   ],
