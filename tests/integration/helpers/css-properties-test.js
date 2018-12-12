@@ -109,3 +109,19 @@ test('it should accept non-string values', function(assert) {
 
   assert.equal(el.style.lineHeight, '1.5');
 });
+
+test('it should only strip ";"', function(assert) {
+  const myStyles = {
+    'background-image': ';;url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEU...\');;'
+  };
+
+  this.set('myStyles', myStyles);
+
+  this.render(
+    hbs`<div data-test-mystyle style="{{css-properties myStyles}}"></div>`
+  );
+
+  const el = document.querySelector('[data-test-mystyle]');
+
+  assert.equal(el.style.backgroundImage, 'url(\'data:image/png;base64,iVBORw0KGgoAAAANSUhEU...\');');
+});
