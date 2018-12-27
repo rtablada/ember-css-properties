@@ -5,7 +5,7 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "https://github.com/rtablada/ember-css-properties",
+  "repository": "https://github.com/adopted-ember-addons/ember-css-properties",
   "license": "MIT",
   "author": "Ryan Tablada <ryan@prototypal.io>",
   "directories": {
