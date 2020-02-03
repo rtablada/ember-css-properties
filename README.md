@@ -1,5 +1,7 @@
 # ember-css-properties
 
+> ⚠️ This addon is deprecated in favor of [**`ember-style-modifier`**](https://github.com/jelhan/ember-style-modifier).
+
 This addon let's you easily and safely bind CSS properties in your Ember templates.
 This creates a reusable helper to avoid the [Binding Style Attributes Deprecation](https://emberjs.com/deprecations/v1.x/#toc_binding-style-attributes) added in Ember 1.11.
 
