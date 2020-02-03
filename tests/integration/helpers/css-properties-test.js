@@ -34,7 +34,12 @@ test('it should escape malicious property values', function(assert) {
     '10px',
     'Passes first set value in potentially malicious values'
   );
-  assert.notEqual(el.style.color, 'red', 'Does not pass values after a ";"');
+
+  assert.equal(
+    el.outerHTML,
+    '<div data-test-malicious="" style="width:10px; color: red;&quot;><h2>Hello World</h2></div><div style=&quot;;"></div>',
+    'Generates safely escaped malicious content'
+  );
 
   this.set(
     'otherMaliciousValue',
@@ -108,4 +113,20 @@ test('it should accept non-string values', function(assert) {
   const el = document.querySelector('[data-test-mystyle]');
 
   assert.equal(el.style.lineHeight, '1.5');
+});
+
+test('it should only strip ";"', function(assert) {
+  const myStyles = {
+    'background-image': ';;url(data:image/png;base64,iVBORw0KGgoAAAANSUhEU...);;'
+  };
+
+  this.set('myStyles', myStyles);
+
+  this.render(
+    hbs`<div data-test-mystyle style="{{css-properties myStyles}}"></div>`
+  );
+
+  const el = document.querySelector('[data-test-mystyle]');
+
+  assert.equal(el.style.backgroundImage, 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEU...")');
 });
