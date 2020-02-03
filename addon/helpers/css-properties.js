@@ -4,7 +4,7 @@ import { isEmpty } from '@ember/utils';
 import cssesc from 'cssesc';
 
 export function cssProperties([objStyles = {}], hashStyles = {}) {
-  let stringStyles = '';
+  let stringStyles = [];
   let allStyles = Object.assign({}, objStyles, hashStyles);
 
   for (const propertyName in allStyles) {
@@ -14,10 +14,10 @@ export function cssProperties([objStyles = {}], hashStyles = {}) {
 
     const [singlePropertyValue] = String(propertyValue).split(';');
 
-    stringStyles += `${cssesc(propertyName)}:${cssesc(singlePropertyValue)};`;
+    stringStyles.push(`${cssesc(propertyName)}: ${cssesc(singlePropertyValue)};`);
   }
 
-  return htmlSafe(stringStyles);
+  return htmlSafe(stringStyles.join(' '));
 }
 
 export default helper(cssProperties);
